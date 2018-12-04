@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,8 +24,8 @@
 				transition: .3s;
 			}
 			.img-thumbnail:hover {
-				margin-top: 10px;
 				border-color: #5bc0de;
+				opacity: .7;
 			}
 		</style>
 
@@ -41,62 +41,67 @@
   <body>
 
     <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="jumbotron">
-				<h2>GA promotion 報表測試</h2>
-				<p>下面三個是模擬廣告banner，可以選擇點擊或是不點擊，再來看ga報表會怎麼呈現。</p>
-			</div>
 			<div class="row">
-				<div class="col-md-4">
-					<a id="pro1" target="_blank" data-name="測試1" href="//www.google.com.tw">
-						<img alt="Bootstrap Image Preview" src="https://picsum.photos/400/300?image=10" class="img-thumbnail">
-					</a>
-				</div>
-				<div class="col-md-4">
-					<a id="pro2" target="_blank" data-name="測試2" href="//www.google.com.tw">
-						<img alt="Bootstrap Image Preview" src="https://picsum.photos/400/300?image=20" class="img-thumbnail">
-					</a>
-				</div>
-				<div class="col-md-4">
-					<a id="pro3" target="_blank" data-name="測試3" href="//www.google.com.tw">
-						<img alt="Bootstrap Image Preview" src="https://picsum.photos/400/300?image=30" class="img-thumbnail">
-					</a>
+				<div class="col-md-12">
+					<div class="jumbotron">
+						<h1 class="mb-4">GA promotion 報表測試</h1>
+						<p>下面三個是模擬廣告banner，可以選擇點擊或是不點擊。</p>
+						<p>底部的報表可以看到GA內部宣傳報表的成效（每小時更新）。</p>
+						<p>使用的教學文在這：<a class="d-inline" target="_blank" href="https://medium.com/@augustus0818/ga-ec-promotion-f2f3dbfe6281">GA報表：電子商務 內部宣傳 報表</a></p>
+					</div>
+					<div class="row">
+						<div class="col">
+							<h2>模擬banner（都會進google首頁）</h2>
+						</div>
+					</div>
+					<div class="row mb-5">
+						<div class="col-md-4 mb-2">
+							<a id="pro1" target="_blank" data-name="測試1" href="//www.google.com.tw">
+								<img alt="測試banner" src="https://picsum.photos/400/300?image=10" class="img-thumbnail">
+							</a>
+						</div>
+						<div class="col-md-4 mb-2">
+							<a id="pro2" target="_blank" data-name="測試2" href="//www.google.com.tw">
+								<img alt="測試banner" src="https://picsum.photos/400/300?image=20" class="img-thumbnail">
+							</a>
+						</div>
+						<div class="col-md-4 mb-2">
+							<a id="pro3" target="_blank" data-name="測試3" href="//www.google.com.tw">
+								<img alt="測試banner" src="https://picsum.photos/400/300?image=30" class="img-thumbnail">
+							</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<h2>GA內部宣傳報表（每小時更新）</h2>
+						</div>
+					</div>
+					<div class="row mb-5">
+						<div class="col">
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_dFiXt4D8FDkmRgDH35BAH5DPEYBULI_640E1rpTasO2iEukFuVXI4RRp5gpptZiJbM7WDKjUshvJ/pubhtml?gid=1801772184&amp;single=true&amp;widget=true&amp;headers=false" allowfullscreen></iframe>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
     <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-		<script src="js/scripts.js"></script>
 		<script>
 			$(function() {
 				gtag('event', 'view_promotion', {
 					"promotions": [
-						{
-							"id": "pro1",
-							"name": "測試1"
-						},
-						{
-							"id": "pro2",
-							"name": "測試2"
-						},
-						{
-							"id": "pro3",
-							"name": "測試3"
-						}
+						{ "id": "pro1", "name": "測試1" },
+						{ "id": "pro2", "name": "測試2" },
+						{ "id": "pro3", "name": "測試3" }
 					]
 				});
 
-				var sendGa = function(id, name) {
+				var sendGa = (id, name) => {
 					gtag('event', 'select_content', {
 						"promotions": [
-							{
-								"id": id,
-								"name": name
-							}
+							{ "id": id, "name": name }
 						]
 					});
 				};
