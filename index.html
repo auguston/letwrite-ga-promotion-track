@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GA promotion 報表測試</title>
+
+    <meta name="description" content="GA promotion 報表測試">
+    <meta name="author" content="Augustus Sean">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<style>
+			.container {
+				padding-top: 50px;
+			}
+			a {
+				display: block;
+				overflow: hidden;
+			}
+			.img-thumbnail {
+				transition: .3s;
+			}
+			.img-thumbnail:hover {
+				margin-top: 10px;
+				border-color: #5bc0de;
+			}
+		</style>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115753072-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-115753072-1');
+		</script>
+  </head>
+  <body>
+
+    <div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+				<h2>GA promotion 報表測試</h2>
+				<p>下面三個是模擬廣告banner，可以選擇點擊或是不點擊，再來看ga報表會怎麼呈現。</p>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<a id="pro1" target="_blank" data-name="測試1" href="//www.google.com.tw">
+						<img alt="Bootstrap Image Preview" src="https://picsum.photos/400/300?image=10" class="img-thumbnail">
+					</a>
+				</div>
+				<div class="col-md-4">
+					<a id="pro2" target="_blank" data-name="測試2" href="//www.google.com.tw">
+						<img alt="Bootstrap Image Preview" src="https://picsum.photos/400/300?image=20" class="img-thumbnail">
+					</a>
+				</div>
+				<div class="col-md-4">
+					<a id="pro3" target="_blank" data-name="測試3" href="//www.google.com.tw">
+						<img alt="Bootstrap Image Preview" src="https://picsum.photos/400/300?image=30" class="img-thumbnail">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+		<script src="js/scripts.js"></script>
+		<script>
+			$(function() {
+				gtag('event', 'view_promotion', {
+					"promotions": [
+						{
+							"id": "pro1",
+							"name": "測試1"
+						},
+						{
+							"id": "pro2",
+							"name": "測試2"
+						},
+						{
+							"id": "pro3",
+							"name": "測試3"
+						}
+					]
+				});
+
+				var sendGa = function(id, name) {
+					gtag('event', 'select_content', {
+						"promotions": [
+							{
+								"id": id,
+								"name": name
+							}
+						]
+					});
+				};
+
+				$('a').each(function() {
+					$(this).on('click', e => {
+						sendGa(this.id, $(this).data('name'));
+					})
+				})
+			});
+		</script>
+  </body>
+</html>
